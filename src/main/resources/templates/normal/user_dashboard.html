@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="card">
+
+			<div class="body">
+
+				<div class="container text-center mt-5">
+
+					<img alt="no image" src="../images/user.png"
+						style="height: 350px; width: 350px; object-fit: cover;">
+				</div>
+
+				<h1 class="text-center text-italic fw-light font-monstreatt">Welcome
+					To Smart Contact Manager, you can now add contacts</h1>
+
+				<div class="container text-center pb-5 ">
+
+					<a class="btn bg-main btn-lg text-white mt-3"
+						th:href="@{/user/add-contact}">Add Contact</a>
+
+				</div>
+
+
+				<div class="m-3">
+					<input id="amounts" type="text" placeholder="Donate Us"
+						class="form-control px-4" />
+
+				</div>
+
+				<div class="container text-center my-3">
+
+					<button onclick="paymentStart()" class="btn btn-success btn-lg">Pay
+						Us</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<script type="text/javascript">
+	
+	$(document).ready(()=> {
+		$('.item').removeClass('ac');
+		$('#home-link').addClass('ac');
+	})
+			
+	</script>
+
+	</section>
+</body>
+</html>

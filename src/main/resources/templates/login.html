@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="mt-5">
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex align-items-center justify-content-center h-100">
+				<div class="col-md-8 col-lg-7 col-xl-6">
+					<img th:src="@{../images/login.jpg}" class="img-fluid"
+						alt="Phone image">
+				</div>
+				<div
+					class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 shadow-lg py-4 px-4 rounded-3">
+
+					<form th:action="@{/signin}" method="post">
+
+						<h1 class="text-center mb-5 font-monstreatt text-uppercase">Login
+							Here</h1>
+
+
+						<div th:if="${param.error}" class="alert alert-danger text-center">
+							Invalid username Or password</div>
+						<div  th:if="${param.logout}" class="alert alert-success text-center">
+							Succcessfully logged out</div>
+							<div th:if="${param.change}" class="alert alert-success text-center">
+							Your password has successfully changed</div>
+						<!-- Email input -->
+						<div class="  form-outline-none mb-4">
+							<label class="form-label font-monstreatt" for="floatingInput">User
+								Name</label> <input type="email" id="floatingInput"
+								class="form-control from-control-lg " name="username" />
+
+						</div>
+
+						<!-- Password input -->
+						<div class="  mb-2">
+							<label class="form-label font-monstreatt" for="floatingInput">Password</label>
+							<input type="password" id="floatingInput"
+								class="form-control from-control-lg " name="password" />
+
+						</div>
+
+						<div class="container mb-4 text-end">
+
+							<a class="text-decoration-none  font-monstreatt"
+								th:href="@{/forgot-form}">forgot password?</a>
+
+						</div>
+
+
+						<!-- Submit button -->
+						<div class="text-center">
+							<button type="submit"
+								class="btn bg-main text-white btn-lg btn-block font-monstreatt text-uppercase">Login</button>
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

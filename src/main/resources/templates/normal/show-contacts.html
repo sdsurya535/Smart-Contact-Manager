@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+
+		<div class="card">
+
+			<div class="card-body ">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-12 col-sm-6 ">
+
+							<div class="alert text-center " role="alert"
+								th:if="${session.message}"
+								th:classappend="${session.message.type}">
+								<div th:text="${session.message.content}"></div>
+
+								<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+							</div>
+
+							<h1 class="mb-5 text-center">View Contacts</h1>
+
+							<div class="search-container my-3">
+
+								<input onkeyup="search()" id="search-input" type="text"
+									class="form-control" placeholder="search your contacts" />
+
+								<div class="search-result">
+
+									<!-- search result here -->
+								</div>
+							</div>
+
+
+							<div class="table-responsive">
+
+								<table class="table table-hover ">
+									<thead class="bg-main table-dark ">
+										<tr>
+											<th scope="col">#ID</th>
+											<th scope="col">USER NAME</th>
+											<th scope="col">EMAIL</th>
+											<th scope="col">WORK</th>
+											<th scope="col">PHONE NUMBER</th>
+											<th scope="col">ACTION</th>
+										</tr>
+
+
+									</thead>
+
+									<tbody>
+										<tr th:if="${contact}" th:each="c:${contact}">
+											<th scope="row" th:text="${'CMUSER'+c.cid}"></th>
+
+											<td><img alt="profile photo" class="profile_pic"
+												th:src="@{'/images/'+ ${c.imageCon}}" /> <span
+												th:text="${c.name}"></span></td>
+											<td><a th:href="@{'/user/contact/'+ ${c.cid}}"
+												data-bs-toggle="tooltip" data-bs-placement="top"
+												th:data-bs-title="${'ID : '+c.cid}"> <span
+													th:text="${c.email}"></span>
+											</a></td>
+											<td th:text="${c.work}"></td>
+											<td th:text="${c.phone}"></td>
+											<td><a type="button"
+												th:href="@{'/user/update-form/'+${c.cid}}"
+												class="text-primary me-2 " data-bs-toggle="tooltip"
+												data-bs-placement="left" data-bs-title="Update"><i
+													class="fa-solid fa-pen-to-square"></i></a> <a href="#"
+												th:onclick="|deleteContact(${c.cid})|" class="text-danger"
+												data-bs-toggle="tooltip" data-bs-placement="top"
+												data-bs-title="Delete"><i class="fa-solid fa-trash"></i></a></td>
+										</tr>
+									</tbody>
+								</table>
+
+
+							</div>
+
+							<nav aria-label="Page navigation example" class="mt-4">
+								<ul class="pagination m-pagination pb-5 mb-5 float-end">
+									<li th:if="${currentPage != 0}" class="page-item"><a
+										th:href="@{'/user/show-contacts/' + ${currentPage-1}}"
+										class="page-link" href="#">Previous</a></li>
+									<li th:classappend="${currentPage == i-1 ? 'active' : ''}"
+										class="page-item"
+										th:each="i:${#numbers.sequence(1,totalPages)}"><a
+										th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link"
+										href="#" th:text="${i}">1</a></li>
+									<li th:if="${currentPage+1 != totalPages}" class="page-item"><a
+										th:href="@{'/user/show-contacts/' + ${currentPage+1}}"
+										class="page-link" href="#">Next</a></li>
+								</ul>
+							</nav>
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+		<script type="text/javascript">
+				
+			const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+			const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+			
+			
+			
+			</script>
+
+		<script>
+					
+			$(document).ready(()=> {
+				$('.item').removeClass('ac');
+				$('#view-link').addClass('ac');
+				console.log('welcome')
+			})
+			</script>
+
+
+
+	</section>
+
+
+
+
+</body>
+</html>

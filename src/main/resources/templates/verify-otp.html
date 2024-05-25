@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section class="mt-5">
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex align-items-center justify-content-center h-100">
+
+				<div
+					class="col-md-12 col-lg-6 col-xl-6 shadow-lg py-4 px-4 rounded-3">
+
+					<form th:action="@{/verify-otp}" method="post">
+
+						<h1 class="text-center mb-3 font-monstreatt text-uppercase">Enter
+							Otp</h1>
+
+						<div class="alert alert-success text-center" role="alert">OTP
+							has successfully sent to your registered email address</div>
+
+						<div class="alert alert-primary text-center"
+							th:if="${session.message}"
+							th:classappend="${session.message.type}" role="alert">
+
+							<div th:text="${session.message.content}"></div>
+
+							<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+						</div>
+
+						<div class="mb-4">
+
+							<input type="text" name="otp" placeholder="Enter the OTP here"
+								class="form-control" />
+
+						</div>
+
+						<!-- Submit button -->
+						<div class="text-center">
+							<button type="submit" class="btn  btn-success   font-monstreatt ">Verify</button>
+						</div>
+
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+</html>

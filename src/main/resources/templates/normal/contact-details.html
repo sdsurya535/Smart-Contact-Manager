@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="card">
+
+			<div class="card-body" th:if="${contact}">
+
+				<div class="container text-center">
+
+
+					<img alt="no image"
+						style="height: 350px; width: 350px; object-fit: cover;"
+						th:src="@{'/images/'+${contact.imageCon}}">
+
+					<div class="mt-2">
+
+						<h2>
+							<span th:text="${contact.name}"></span> (<span
+								th:text="${contact.nickname}"></span>)
+						</h2>
+
+					</div>
+
+					<div class="mt-5 ms-5">
+					
+						<table class="table ms-5">
+						<thead class="table-info" >
+							<tr>
+								<th scope="col">#ID</th>
+								<th scope="col"><span th:text="'CMUSER'+${contact.cid}"></span></th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Email</th>
+								<td><span th:text="${contact.email}"></span></td>
+								
+							</tr>
+							
+							<tr>
+								<th scope="row">Phone</th>
+								<td><span th:text="${contact.phone}"></span></td>
+								
+							</tr>
+							
+							<tr>
+								<th scope="row">Work</th>
+								<td><span th:text="${contact.work}"></span></td>
+								
+							</tr>
+						</tbody>
+						</table>
+						
+						
+							<div class="mt-5">
+								
+								<span th:utext="${contact.description}"></span>
+							
+							</div>
+							
+							
+							<div class="mt-4">
+							
+								
+								<a class="btn text-white  btn-block bg-main" th:href="@{'/user/update-form/'+${contact.cid}}">Update</a>
+								<a class="btn btn-danger btn-block" href="#" th:onclick="|deleteContact(${contact.cid})|">Delete</a>
+							
+							</div>
+					
+					</div>
+				</div>
+				
+				
+
+
+			</div>
+			<div class="text-center mt-5" th:unless="${contact}">
+				
+				<img alt="no image" class="img-fluid" height="200px" width="200px" th:src="@{/images/redcross.png}">
+			
+			<h1 class="mt-4 text-danger font-monstreatt">You Don't have the permission to access this Contact</h1>
+			
+		</div>
+			
+
+		</div>
+		
+		
+
+	</section>
+</body>
+</html>

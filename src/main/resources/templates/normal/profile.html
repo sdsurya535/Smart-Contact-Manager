@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+
+		<div class="card">
+
+			<div class="card-body" th:if="${user}">
+
+				<div class="container text-center">
+
+
+					<img alt="no image"
+						style="height: 350px; width: 350px; object-fit: cover;"
+						src="../images/user1.png">
+
+					<div class="mt-4">
+
+						<h2>
+							<span th:text="${user.name}"></span>
+						</h2>
+
+					</div>
+
+					<div class="mt-5 ms-5">
+
+						<table class="table ms-5">
+							<thead class="table-primary">
+								<tr>
+									<th scope="col">#ID</th>
+									<th scope="col"><span th:text="'CMUSER'+${user.id}"></span></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Email</th>
+									<td><span th:text="${user.email}"></span></td>
+
+								</tr>
+
+								<tr>
+									<th scope="row">Enabled</th>
+									<td><span th:text="${user.enabled}"></span></td>
+
+								</tr>
+
+								<tr>
+									<th scope="row">Role</th>
+									<td><span th:text="${user.role}"></span></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+
+						<div class="mt-5">
+
+							<span th:utext="${user.about}"></span>
+
+						</div>
+
+
+						<div class="mt-4">
+
+
+							<a class="btn text-white  btn-block bg-main">Update</a>
+							<a class="btn btn-danger btn-block" href="#">Delete</a>
+
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script type="text/javascript">
+	
+	$(document).ready(()=> {
+		$('.item').removeClass('ac');
+		$('#profile-link').addClass('ac');
+	})
+			
+	</script>
+	</section>
+</body>
+</html>

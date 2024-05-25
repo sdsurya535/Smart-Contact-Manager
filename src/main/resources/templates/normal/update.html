@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{normal/base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<section>
+		
+		<div class="card px-3 mt-5">
+
+			<div class="card-body">
+
+				<div class="container">
+
+					<div class="row">
+
+						<div class="col-md-10 offset-1">
+
+
+
+							<form th:action="@{/user/process-update}" th:object="${contact}"
+								method="post" enctype="multipart/form-data"
+								class="font-monstreatt">
+
+
+								<div class="alert alert-success text-center" th:if="${session.message}" th:classappend="${session.message.type}" role="alert">
+		
+										<div th:text="${session.message.content}">
+										
+										</div>
+										
+										<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>
+			
+								</div>
+
+								<h1 class="text-center text-uppercase mb-3">Update Contact</h1>
+								
+								
+								
+								<!-- id field -->
+								
+								<input type="hidden" th:value="${contact.cid}" name="cid"/>
+
+								<!-- user name area  -->
+
+								<div class="mb-3">
+									<label class="visually-hidden"
+										for="specificSizeInputGroupUsername">Username</label>
+									<div class="input-group">
+										<div class="input-group-text">
+											<i class="fa-solid fa-user"></i>
+										</div>
+										<input type="text" class="form-control" id="username"
+											name="name" placeholder="Username" th:value="${contact.name}"
+											>
+
+										
+
+
+
+									</div>
+								
+
+
+
+								</div>
+
+
+
+
+
+								<!-- email field -->
+
+								<div class="mb-3">
+									<label class="visually-hidden" for="Email">Email</label>
+									<div class="input-group">
+										<div class="input-group-text">@</div>
+										<input type="email" class="form-control" id="email"
+											placeholder="Email" name="email" th:value="${contact.email}">
+											
+											
+									</div>
+								</div>
+
+
+								<!-- nickname field  -->
+
+								<div class="mb-3">
+									<label class="visually-hidden" for="nickname">Nick Name</label>
+									<div class="input-group">
+										<div class="input-group-text">
+											<i class="fa-solid fa-user-tie"></i>
+										</div>
+										<input type="text" class="form-control" id="name"
+											placeholder="Nick Name" name="nickname" th:value="${contact.nickname}">
+											
+										
+									</div>
+								</div>
+
+
+								<!-- work field -->
+
+								<div class="mb-3">
+									<label class="visually-hidden" for="work">Work</label>
+									<div class="input-group">
+										<div class="input-group-text">
+											<i class="fa-solid fa-briefcase"></i>
+										</div>
+										<input type="text" class="form-control" id="work"
+											placeholder="Work" name="work" th:value="${contact.work}" >
+											
+											
+									</div>
+								</div>
+
+								<!-- phone field -->
+
+								<div class="mb-3">
+									<label class="visually-hidden" for="phone">Phone</label>
+									<div class="input-group">
+										<div class="input-group-text">
+											<i class="fa-solid fa-phone"></i>
+										</div>
+										<input type="number" class="form-control" id="phone"
+											placeholder="Phone Number" name="phone" th:value="${contact.phone}">
+											
+											
+									</div>
+								</div>
+
+
+								<!-- Description Field  -->
+
+
+								<div class="mb-3">
+									<textarea rows="14" class="form-control"
+										placeholder="Enter about yourself" id="default-editor"
+										name="description" th:text="${contact.description}"></textarea>
+								</div>
+
+								<!-- image field -->
+
+								<div class="mb-3">
+									<input type="file" class="form-control" name="image">
+									
+								</div>
+
+								<div class="container text-center">
+
+									<button type="submit"
+										class="btn btn-outline-success font-monstreatt me-2 px-4">Update
+									</button>
+									<button type="reset"
+										class="btn btn-outline-warning font-monstreatt px-4">Reset
+									</button>
+								</div>
+
+							</form>
+
+						</div>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		
+		<script src="https://cdn.tiny.cloud/1/cxwwv0gfet1cmrwfdzhf72lqkbl6m01j6lcgwuftxm6jqf02/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+		<script type="text/javascript" >
+		tinymce.init({
+			  selector: 'textarea#default-editor'
+			});
+		
+		</script>
+
+	
+	</section>
+
+</body>
+</html>
