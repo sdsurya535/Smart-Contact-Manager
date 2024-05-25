@@ -39,6 +39,4 @@ The Smart Contact Manager is a web application developed using Spring Boot, Thym
 
 - Suryadutta Dash
 
-## License
 
-This project is licensed under the MIT License.
